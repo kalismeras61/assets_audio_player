@@ -124,7 +124,7 @@ class NotificationService : Service() {
                 hideNotif()
             }
         }
-        return START_STICKY
+        return START_NOT_STICKY
     }
 
     private fun createReturnIntent(forAction: String, forPlayer: String, audioMetas: AudioMetas): Intent {
