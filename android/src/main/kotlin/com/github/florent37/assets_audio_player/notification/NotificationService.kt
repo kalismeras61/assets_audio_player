@@ -23,7 +23,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.abs
-
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
+import android.app.PendingIntent.FLAG_IMMUTABLE
 class NotificationService : Service() {
 
     companion object {
@@ -228,7 +229,7 @@ class NotificationService : Service() {
                 .putExtra(EXTRA_NOTIFICATION_ACTION, action.copyWith(
                         isPlaying = !action.isPlaying
                 ))
-        val pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingToggleIntent = PendingIntent.getBroadcast(this, 0, toggleIntent, FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
         MediaButtonReceiver.handleIntent(mediaSession, toggleIntent)
 
         val context = this
@@ -238,7 +239,7 @@ class NotificationService : Service() {
                 .apply {
                     if (notificationSettings.prevEnabled) {
                         addAction(getPrevIcon(context, action.notificationSettings.previousIcon), "prev",
-                                PendingIntent.getBroadcast(context, 0, createReturnIntent(forAction = NotificationAction.ACTION_PREV, forPlayer = action.playerId, audioMetas = action.audioMetas), PendingIntent.FLAG_UPDATE_CURRENT)
+                                PendingIntent.getBroadcast(context, 0, createReturnIntent(forAction = NotificationAction.ACTION_PREV, forPlayer = action.playerId, audioMetas = action.audioMetas), FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
                         )
                     }
                 }
@@ -256,7 +257,7 @@ class NotificationService : Service() {
                 .apply {
                     if (notificationSettings.nextEnabled) {
                         addAction(getNextIcon(context, action.notificationSettings.nextIcon), "next", PendingIntent.getBroadcast(context, 0,
-                                createReturnIntent(forAction = NotificationAction.ACTION_NEXT, forPlayer = action.playerId, audioMetas = action.audioMetas), PendingIntent.FLAG_UPDATE_CURRENT)
+                                createReturnIntent(forAction = NotificationAction.ACTION_NEXT, forPlayer = action.playerId, audioMetas = action.audioMetas), FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
                         )
                     }
                 }
@@ -264,7 +265,7 @@ class NotificationService : Service() {
                 .apply {
                     if (notificationSettings.stopEnabled) {
                         addAction(getStopIcon(context, action.notificationSettings.stopIcon), "stop", PendingIntent.getBroadcast(context, 0,
-                                createReturnIntent(forAction = NotificationAction.ACTION_STOP, forPlayer = action.playerId, audioMetas = action.audioMetas), PendingIntent.FLAG_UPDATE_CURRENT)
+                                createReturnIntent(forAction = NotificationAction.ACTION_STOP, forPlayer = action.playerId, audioMetas = action.audioMetas), FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
                         )
                     }
                 }
@@ -293,7 +294,7 @@ class NotificationService : Service() {
                     }
                 }
                 .setContentIntent(PendingIntent.getBroadcast(this, 0,
-                        createReturnIntent(forAction = NotificationAction.ACTION_SELECT, forPlayer = action.playerId, audioMetas = action.audioMetas), PendingIntent.FLAG_CANCEL_CURRENT))
+                        createReturnIntent(forAction = NotificationAction.ACTION_SELECT, forPlayer = action.playerId, audioMetas = action.audioMetas), FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT))
                 .also {
                     if (bitmap != null) {
                         it.setLargeIcon(bitmap)
