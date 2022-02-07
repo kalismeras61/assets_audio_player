@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application>
-        <receiver android:name=".notification.NotificationActionReceiver"/>
-        <receiver android:name=".notification.CustomMediaButtonReceiver" >
+        <receiver android:name=".notification.NotificationActionReceiver" android:exported="true"/>
+        <receiver android:name=".notification.CustomMediaButtonReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>

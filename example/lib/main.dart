@@ -193,9 +193,9 @@ class _MyAppState extends State<MyApp> {
                     fit: StackFit.passthrough,
                     children: <Widget>[
                       _assetsAudioPlayer.builderCurrent(
-                        builder: (BuildContext context, Playing playing) {
+                        builder: (BuildContext context, Playing? playing) {
                           final myAudio =
-                              find(audios, playing.audio.assetAudioPath);
+                              find(audios, playing!.audio.assetAudioPath);
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Neumorphic(
