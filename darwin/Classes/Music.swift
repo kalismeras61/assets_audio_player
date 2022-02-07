@@ -114,7 +114,7 @@ public class Player : NSObject, AVAudioPlayerDelegate {
     
     var _loopSingleAudio = false
     var isLiveStream: Bool = false
-    var isDefaultAudioConfigurationEnabled: Bool = true
+    var isDefaultAudioConfigurationEnabled: Bool = false
     
     var secondaryPlayer: AVQueuePlayer?
     let crossFadetimeInSeconds: Double = 5.0
