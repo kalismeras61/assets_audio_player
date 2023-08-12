@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'player/PlayingControls.dart';
@@ -275,8 +274,9 @@ class _MyAppState extends State<MyApp> {
                                     },
                                     onNext: () {
                                       //_assetsAudioPlayer.forward(Duration(seconds: 10));
-                                      _assetsAudioPlayer.next(keepLoopMode: true
-                                          /*keepLoopMode: false*/);
+                                      _assetsAudioPlayer.next(
+                                          keepLoopMode:
+                                              true /*keepLoopMode: false*/);
                                     },
                                     onPrevious: () {
                                       _assetsAudioPlayer.previous(

@@ -10,12 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_neumorphic: ^3.1.0
+  flutter_neumorphic: 
+    git:
+      url: https://github.com/den0206/Flutter-Neumorphic.git
+      ref: feature/remoce_accentcolor
   rxdart: ^0.27.0
   # for local file test
-  dio: ^4.0.0-beta7
+  dio: ^5.2.1+1
   path_provider: ^2.0.1
-  http: ^0.13.0
+  http: ^1.1.0
   provider: ^5.0.0
   file: ^6.1.0
 
@@ -34,7 +37,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_web_compilers: '>=2.0.0 <3.0.0'
+  build_web_compilers: ^4.0.4
   pedantic: ^1.11.0
 
   # uncomment to use remote repos
